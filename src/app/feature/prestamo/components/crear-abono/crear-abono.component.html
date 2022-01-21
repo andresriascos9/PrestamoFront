@@ -1,0 +1,33 @@
+<div class="modal-header bg-primary text-white">
+    <h4 class="modal-title" id="modal-basic-title">Crear Abono</h4>
+</div>
+<div class="modal-body">
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()" *ngIf="editForm">
+        <div class="form-group row d-flex justify-content-center align-items-center">
+            <label for="valorAbono" class="col-form-label col-sm-2 text-right">Valor Abono:</label>
+            <div class="col-sm-5">
+                <input type="number" formControlName="valorAbono" name="valorAbono" id="valorAbono" class="form-control" [class.is-invalid]="valorAbonoNoValido"/>
+                <div *ngIf="valorAbonoNoValido"
+                    class="alert-danger">
+                    <span>Valor Prestamo es inválido</span>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <input type="hidden" formControlName="prestamo" name="prestamo" id="prestamo" class="form-control" />
+                <div *ngIf="editFormData.prestamo.invalid && (editFormData.prestamo.dirty && editFormData.prestamo.touched)"
+                    class="alert-danger">
+                    <span>Valor Prestamo es requerido</span>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" [disabled]="isLoading" class="btn btn-danger mr-2" (click)="modal.close(false)">Cancel</button>
+            <button id="guardarAbono" type="submit" [disabled]="!editForm.valid" class="btn btn-primary mr-2">Crear Abono</button>
+        </div>
+ 
+    </form>
+</div>
+<!-- <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark"  (click)="modal.close('Yes')">Update</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cancel')">Cancel</button>
+</div> -->

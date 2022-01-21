@@ -1,0 +1,29 @@
+<div class="modal-header bg-primary text-white">
+    <h4 class="modal-title" id="modal-basic-title">Abonos del prestamo</h4>
+</div>
+<div class="modal-body">
+    <div id="abonos">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Fecha de Abono</th>
+            <th scope="col">Valor del abono</th>
+            </tr>
+            </thead>
+            <tbody class="abonos">
+            <tr *ngFor="let abono of listaAbonos | async">
+            <td>
+                {{ abono.id }}
+            </td>
+            <td>{{ abono.fechaAbono}}</td>
+            <td>${{ abono.valorAbono }}</td>
+            </tr>
+            </tbody>            
+        </table>
+        <p class="text-right font-weight-bold">Total abonado: $ {{totalAbonos}}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger mr-2" (click)="modal.close(false)">Cerrar</button>
+    </div>
+</div>

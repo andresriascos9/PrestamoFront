@@ -1,0 +1,27 @@
+<br><main role="main" class="container">
+    <div class="jumbotron">
+        <form [formGroup]="prestamoForm" (ngSubmit)="agregar()">
+            <div class="form-row">    
+              <div class="form-group col-md-4">    
+                <label for="valorPrestamo">Valor del prestamo</label>    
+                <input id="valorPrestamo" name="valorPrestamo"  type="number" class="form-control" formControlName="valorPrestamo" [class.is-invalid]="valorPrestamoNoValido">
+                <div *ngIf="valorPrestamoNoValido"
+                    class="alert-danger">
+                    <span>Valor Prestamo es inválido</span>
+                </div>
+              </div>    
+              <div class="form-group col-md-8">    
+                <label for="persona">Persona</label>    
+                <select formControlName="persona" class="custom-select" name="persona" id="persona" [class.is-invalid]="nombrePersonaNoValido">
+                    <option *ngFor="let item of listaPersonas | async" [value]="item.id">{{item.nombre}}</option>
+                </select>
+                <div *ngIf="nombrePersonaNoValido"
+                    class="alert-danger">
+                    <span>Seleccione una persona</span>
+                </div>
+              </div>    
+            </div>   
+            <button id="guardarPrestamo" [disabled]="!prestamoForm.valid" type="submit" class="btn btn-primary">Guardar</button>    
+        </form>   
+    </div>
+  </main>

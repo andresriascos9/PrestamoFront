@@ -1,0 +1,45 @@
+<br><main role="main" class="container">
+    <div class="jumbotron">
+      <h1>Prestamos</h1>
+      <div id="prestamos">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Fecha de Pago</th>
+              <th scope="col">Valor del prestamo</th>
+              <th scope="col">Valor Abonado</th>
+              <th scope="col">Persona</th>
+              <th scope="col">Estado del prestamo</th>
+              <th scope="col">Acciones</th>
+            </tr>
+            </thead>
+            <tbody class="prestamos">
+            <tr *ngFor="let prestamo of listaPrestamos ">
+              <td>
+                {{ prestamo.id }}
+              </td>
+              <td>{{ prestamo.fechaPago}}</td>
+              <td>${{ prestamo.valorPrestamo }}</td>
+              <td>${{ obtenerSuma(obtenerAbonos(prestamo.id)) }}</td>
+              <td>{{ obtenerPersona(prestamo.persona) }}</td>
+              <td> 
+                <span *ngIf="prestamo.estadoPrestamoPago == true" class="badge badge-success"> Pagado </span>
+                <span *ngIf="prestamo.estadoPrestamoPago == false" class="badge badge-danger"> No pagado </span>
+             </td>
+             <td>
+              <div class="row">
+                <div class="col-md-4 .col-md-offset-1">
+                  <button *ngIf="prestamo.estadoPrestamoPago == false" class="btn btn-sm btn-outline-primary abonar" (click)="open(prestamo)">Abonar</button>
+                </div>
+                <div class="col-md-7">
+                  <button class="btn btn-sm btn-outline-primary" (click)="openAbonos(prestamo.id, obtenerSuma(obtenerAbonos(prestamo.id)))">Ver Abonos</button>
+                </div>
+              </div>
+            </td>
+            </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+  </main>
