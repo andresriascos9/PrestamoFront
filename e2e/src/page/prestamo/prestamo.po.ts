@@ -27,9 +27,11 @@ export class PrestamoPage {
     }
 
     async ingresarPersona() {
-        await this.inputPersonaPrestamo.all(by.tagName('option')).then(function (options) {
-          options[2].click();
-        });
+        if(await this.inputPersonaPrestamo.all(by.tagName('option')).count() > 0){
+            await this.inputPersonaPrestamo.all(by.tagName('option')).then(function (options) {
+                options[2].click();
+            });
+        }
     }
 
     async obtenervalorInputValorPrestamo(){
@@ -53,23 +55,35 @@ export class PrestamoPage {
     }
 
     async clickPrimerBotonAbonar(){
-        await this.botonAbonar.click();
+        if(await this.botonAbonar.isPresent()){
+            await this.botonAbonar.click();
+        }
     }
 
     async ingresarValorAbono(valorAbono) {
-        await this.inputValorAbono.sendKeys(valorAbono);
+        if(await this.inputValorAbono.isPresent() && await this.inputValorAbono.isDisplayed()){
+            await this.inputValorAbono.sendKeys(valorAbono);
+        }
     }
 
     async clikGuardarAbono() {
-        await this.botonGuardarAbono.click();
+        if(await  this.botonGuardarAbono.isPresent() && await  this.botonGuardarAbono.isDisplayed()){
+            await this.botonGuardarAbono.click();
+        }
     }
 
     async obtenervalorInputValorAbono(){
-        return this.inputValorAbono.getText();
+        if(await  this.inputValorAbono.isPresent() && await  this.inputValorAbono.isDisplayed()){
+            return this.inputValorAbono.getText();
+        }else{
+            return '';
+        }
     }
 
     async clikListarAbonos() {
-        await this.botonListarAbonos.click();
+        if(await this.botonListarAbonos.isPresent()){
+            await this.botonListarAbonos.click();
+        }
     }
 
     async contarAbonos(){

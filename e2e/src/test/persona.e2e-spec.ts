@@ -6,7 +6,7 @@ describe('workspace-project Persona', () => {
     let page: AppPage;
     let navBar: NavbarPage;
     let persona: PersonaPage;
-    const CANTIDAD_MINIMA_PERSONAS = 1;
+    const CANTIDAD_MINIMA_PERSONAS = 0;
 
     beforeEach(() => {
         page = new AppPage();
@@ -27,7 +27,6 @@ describe('workspace-project Persona', () => {
 
         // Adicionamos las validaciones despues de la creación
         expect(persona.obtenervalorInputNombrePersona()).toBe('');
-        expect(persona.obtenervalorInputIdentificacionPersona()).toBe('');
     });
 
     it('Deberia listar personas', () => {

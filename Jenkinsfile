@@ -66,7 +66,7 @@ pipeline {
     stage('Test end-to-end') {
       steps{
         echo "------------>Testing Protractor<------------"
-        sh 'npm run e2e -- --watch=false --browsers ChromeHeadless'
+        sh 'npm run e2e --'
       }
     }
 
