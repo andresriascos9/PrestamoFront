@@ -59,14 +59,14 @@ pipeline {
     stage('Test Unit') {
       steps{
         echo "------------>Test<------------"
-        sh 'npm run test'
+        sh 'npm run test -- --watch=false --browsers ChromeHeadless'
       }
     }
 
     stage('Test end-to-end') {
       steps{
         echo "------------>Testing Protractor<------------"
-        sh 'npm run e2e'
+        sh 'npm run e2e -- --watch=false --browsers ChromeHeadless'
       }
     }
 
