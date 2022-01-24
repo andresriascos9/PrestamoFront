@@ -25,12 +25,6 @@ export class CrearPersonaComponent implements OnInit {
   }
 
   agregar(){
-    /*this.personaServicio.guardar(this.personaForm.value).subscribe(data => {
-      if (data) {
-        this.success();
-      }
-    });*/
-
     this.personaServicio.guardar(this.personaForm.value).subscribe(
       data => {if (data){
         this.success();

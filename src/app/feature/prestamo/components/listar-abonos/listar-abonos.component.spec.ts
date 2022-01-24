@@ -2,8 +2,8 @@ import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 
 import { ListarAbonosComponent } from './listar-abonos.component';
-import { AbonoService } from '@abono/shared/service/abono.service';
-import { Abono } from '@abono/shared/model/abono';
+import { AbonoService } from '@prestamo/shared/service/abono.service';
+import { Abono } from '@prestamo/shared/model/abono';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';

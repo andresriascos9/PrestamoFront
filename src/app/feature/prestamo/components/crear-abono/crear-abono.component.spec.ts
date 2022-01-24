@@ -2,7 +2,7 @@ import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 
 import { CrearAbonoComponent } from './crear-abono.component';
-import { AbonoService } from '@abono/shared/service/abono.service';
+import { AbonoService } from '@prestamo/shared/service/abono.service';
 import { Prestamo } from '@prestamo/shared/model/prestamo';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -56,6 +56,6 @@ describe('CrearAbonoComponent', () => {
     component.editForm.controls.valorAbono.setValue('20000');
     component.editForm.controls.prestamo.setValue(1);
     expect(component.editForm.valid).toBeTruthy();
-    expect(component.onSubmit()).toBeTruthy();
+    expect(component.onSubmit()).toBe();
   });
 });

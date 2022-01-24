@@ -3,8 +3,8 @@ import { of } from 'rxjs';
 
 import { CrearPrestamoComponent } from './crear-prestamo.component';
 import { PrestamoService } from '../../shared/service/prestamo.service';
-import { PersonaService } from '@persona/shared/service/persona.service';
-import { Persona } from '@persona/shared/model/persona';
+import { PersonaService } from '@shared/Persona/service/persona.service';
+import { Persona } from '@shared/Persona/model/persona';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -60,6 +60,6 @@ describe('CrearPrestamoComponent', () => {
     component.prestamoForm.controls.valorPrestamo.setValue('2000000');
     component.prestamoForm.controls.persona.setValue(1);
     expect(component.prestamoForm.valid).toBeTruthy();
-    expect(component.agregar()).toBeTruthy();
+    expect(component.agregar()).toBe();
   });
 });

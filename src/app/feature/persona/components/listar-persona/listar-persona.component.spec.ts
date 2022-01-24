@@ -2,8 +2,8 @@ import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 
 import { ListarPersonaComponent } from './listar-persona.component';
-import { PersonaService } from '../../shared/service/persona.service';
-import { Persona } from '../../shared/model/persona';
+import { PersonaService } from '@shared/Persona/service/persona.service';
+import { Persona } from '@shared/Persona/model/persona';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
