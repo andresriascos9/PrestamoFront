@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { PrestamoService } from '@prestamo/shared/service/prestamo.service';
 import { Prestamo } from '@prestamo/shared/model/prestamo';
-import { Persona } from '@persona/shared/model/persona';
-import { Abono } from '@abono/shared/model/abono';
-import { PersonaService } from '@persona/shared/service/persona.service';
+import { Persona } from '@shared/Persona/model/persona';
+import { Abono } from '@prestamo/shared/model/abono';
+import { PersonaService } from '@shared/Persona/service/persona.service';
 import { CrearAbonoComponent } from '../crear-abono/crear-abono.component';
 import { ListarAbonosComponent } from '../listar-abonos/listar-abonos.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import { AbonoService } from '@abono/shared/service/abono.service';
+import { AbonoService } from '@prestamo/shared/service/abono.service';
 
 @Component({
   selector: 'app-listar-prestamo',
@@ -19,41 +19,46 @@ export class ListarPrestamoComponent implements OnInit {
   listaAbonos: Abono[] = [];
   listaPrestamos: Prestamo[] = [];
   listaPersonas: Persona[] = [];
-  constructor(protected prestamoService: PrestamoService, protected personasService: PersonaService, protected abonoService: AbonoService, private modalService: NgbModal ) { }
+  constructor(
+    protected prestamoService: PrestamoService,
+    protected personasService: PersonaService,
+    protected abonoService: AbonoService,
+    private modalService: NgbModal){
+    }
 
   ngOnInit(): void {
-     this.iniciarValores()
+     this.iniciarValores();
   }
 
   private iniciarValores(){
     this.prestamoService.consultar().subscribe(data => {
       this.listaPrestamos = data;
     }, error => {
-        console.log(error); 
-    }); 
+      console.log(error);
+    });
 
     this.personasService.consultar().subscribe(info => {
-        this.listaPersonas = info
+      this.listaPersonas = info;
     }, error => {
-        console.log(error); 
+      console.log(error);
     });
 
     this.abonoService.consultar().subscribe(info => {
-      this.listaAbonos = info
+      this.listaAbonos = info;
     }, error => {
-        console.log(error); 
+      console.log(error);
     });
   }
 
   obtenerPersona(id){
-    let persona = this.listaPersonas.find(element => element.id === id);
-    if(persona){
+    const persona = this.listaPersonas.find(element => element.id === id);
+    if (persona){
       return persona.nombre;
     }
   }
 
   obtenerAbonos(id){
-    let abonos = this.listaAbonos.filter(element => element.prestamo === id);
+    const abonos = this.listaAbonos.filter(element => element.prestamo === id);
     return abonos;
   }
 
@@ -64,16 +69,15 @@ export class ListarPrestamoComponent implements OnInit {
     });
     return suma;
   }
-  
+
   open(prestamo) {
     const modalRef = this.modalService.open(CrearAbonoComponent, { centered: true });
     modalRef.componentInstance.prestamoSeleccionado = prestamo;
     modalRef.result.then(result => {
-      if(result == true){
+      if (result === true){
         this.iniciarValores();
       }
-   })
-
+   });
   }
 
   openAbonos(prestamo, sumaAbonos) {

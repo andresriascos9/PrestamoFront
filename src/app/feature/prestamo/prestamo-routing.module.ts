@@ -11,7 +11,8 @@ const routes: Routes = [{
     {
       path: 'crear',
       component: CrearPrestamoComponent
-    },{
+    },
+    {
       path: 'listar',
       component: ListarPrestamoComponent
     },

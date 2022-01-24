@@ -3,9 +3,7 @@ import { HttpService } from '@core-service/http.service';
 import { environment } from 'src/environments/environment';
 import { Abono } from '../model/abono';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AbonoService {
 
   constructor(protected http: HttpService) { }
@@ -15,12 +13,11 @@ export class AbonoService {
   }
 
   public consultarAbonosPorPrestamo(id) {
-    return this.http.doGet<Abono[]>(`${environment.endpoint}/abonos/`+id, this.http.optsName('consultar abonos'));
+    return this.http.doGet<Abono[]>(`${environment.endpoint}/abonos/` + id, this.http.optsName('consultar abonos'));
   }
 
   public guardar(abono: Abono) {
-    return this.http.doPost<Abono, boolean>(`${environment.endpoint}/abonos`, abono,
-                                                this.http.optsName('crear/actualizar abonos'));
+    return this.http.doPost<Abono, boolean>(`${environment.endpoint}/abonos`, abono, this.http.optsName('crear/actualizar abonos'));
   }
 
 }

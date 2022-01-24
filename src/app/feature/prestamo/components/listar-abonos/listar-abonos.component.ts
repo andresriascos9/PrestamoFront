@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Abono } from '@abono/shared/model/abono';
-import { AbonoService } from '@abono/shared/service/abono.service';
+import { Abono } from '@prestamo/shared/model/abono';
+import { AbonoService } from '@prestamo/shared/service/abono.service';
 import { Observable } from 'rxjs';
 
 @Component({

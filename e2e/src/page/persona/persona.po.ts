@@ -31,7 +31,7 @@ export class PersonaPage {
     async obtenervalorInputIdentificacionPersona(){
         return this.inputIdPersona.getText();
     }
-    
+
     async clikGuardar() {
         await this.botonGardar.click();
     }

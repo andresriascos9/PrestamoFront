@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PersonaService } from '../../shared/service/persona.service';
+import { PersonaService } from '@shared/Persona/service/persona.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 
@@ -32,13 +32,12 @@ export class CrearPersonaComponent implements OnInit {
     });*/
 
     this.personaServicio.guardar(this.personaForm.value).subscribe(
-      data => {if(data){
+      data => {if (data){
         this.success();
         this.personaForm.reset();
       }},
       error => this.error(error.error.mensaje)
     );
-    
   }
 
   private construirFormularioProducto() {
@@ -49,9 +48,9 @@ export class CrearPersonaComponent implements OnInit {
     });
   }
 
-  get form() {  
-    return this.personaForm.controls;  
-  } 
+  get form() {
+    return this.personaForm.controls;
+  }
 
   success(){
     let enPantalla = false;

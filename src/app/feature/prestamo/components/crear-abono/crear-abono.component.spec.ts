@@ -56,6 +56,6 @@ describe('CrearAbonoComponent', () => {
     component.editForm.controls.valorAbono.setValue('20000');
     component.editForm.controls.prestamo.setValue(1);
     expect(component.editForm.valid).toBeTruthy();
-    expect(component.onSubmit()).toBeTruthy;
+    expect(component.onSubmit()).toBeTruthy();
   });
 });

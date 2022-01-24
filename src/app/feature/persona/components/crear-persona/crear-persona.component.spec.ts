@@ -52,6 +52,6 @@ describe('CrearPersonaComponent', () => {
     component.personaForm.controls.identificacion.setValue('001111');
     component.personaForm.controls.nombre.setValue('Nombre test de test');
     expect(component.personaForm.valid).toBeTruthy();
-    expect(component.agregar()).toBeTruthy;
+    expect(component.agregar()).toBeTruthy();
   });
 });

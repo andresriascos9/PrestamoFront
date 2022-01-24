@@ -13,11 +13,11 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 describe('ListarAbonosComponent', () => {
   let component: ListarAbonosComponent;
   let fixture: ComponentFixture<ListarAbonosComponent>;
-  let totalAbonos = 70000;
-  let idPrestamo = 1;
+  const totalAbonos = 70000;
+  const idPrestamo = 1;
   let abonoService: AbonoService;
   const listaAbonos: Abono[] = [new Abono(1, '2022-01-26', 30000, 1), new Abono(1, '2022-01-26', 40000, 1)];
-  
+
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ListarAbonosComponent],

@@ -9,7 +9,7 @@ export class PrestamoPage {
     private listaPrestamos = element.all(by.css('tbody.prestamos tr'));
     private listaPersonas = element.all(by.tagName('option'));
     private botonAbonar = element(by.buttonText('Abonar'));
-    private botonListarAbonos = element(by.buttonText('Ver Abonos'))
+    private botonListarAbonos = element(by.buttonText('Ver Abonos'));
     private inputValorAbono = element(by.id('valorAbono'));
     private botonGuardarAbono = element(by.id('guardarAbono'));
     private listaAbonos = element.all(by.css('tbody.abonos tr'));
@@ -26,9 +26,9 @@ export class PrestamoPage {
         await this.inputValorPrestamo.sendKeys(valorPrestamo);
     }
 
-    async ingresarPersona() {
-        if(await this.inputPersonaPrestamo.all(by.tagName('option')).count() > 0){
-            await this.inputPersonaPrestamo.all(by.tagName('option')).then(function (options) {
+    async ingresarPersona(){
+        if (await this.inputPersonaPrestamo.all(by.tagName('option')).count() > 0){
+            await this.inputPersonaPrestamo.all(by.tagName('option')).then((options) => {
                 options[2].click();
             });
         }
@@ -41,47 +41,47 @@ export class PrestamoPage {
     async obtenervalorInputPersonaPrestamo(){
         return this.inputPersonaPrestamo.getText();
     }
-    
-    async clikGuardar() {
+
+    async clikGuardar(){
         await this.botonGuardar.click();
     }
 
-    async contarPrestamos() {
+    async contarPrestamos(){
         return this.listaPrestamos.count();
     }
 
-    async contarPersonas() {
+    async contarPersonas(){
         return this.listaPersonas.count();
     }
 
     async clickPrimerBotonAbonar(){
-        if(await this.botonAbonar.isPresent()){
+        if (await this.botonAbonar.isPresent()){
             await this.botonAbonar.click();
         }
     }
 
-    async ingresarValorAbono(valorAbono) {
-        if(await this.inputValorAbono.isPresent() && await this.inputValorAbono.isDisplayed()){
+    async ingresarValorAbono(valorAbono){
+        if (await this.inputValorAbono.isPresent() && await this.inputValorAbono.isDisplayed()){
             await this.inputValorAbono.sendKeys(valorAbono);
         }
     }
 
-    async clikGuardarAbono() {
-        if(await  this.botonGuardarAbono.isPresent() && await  this.botonGuardarAbono.isDisplayed()){
+    async clikGuardarAbono(){
+        if (await this.botonGuardarAbono.isPresent() && await  this.botonGuardarAbono.isDisplayed()){
             await this.botonGuardarAbono.click();
         }
     }
 
     async obtenervalorInputValorAbono(){
-        if(await  this.inputValorAbono.isPresent() && await  this.inputValorAbono.isDisplayed()){
+        if (await this.inputValorAbono.isPresent() && await  this.inputValorAbono.isDisplayed()){
             return this.inputValorAbono.getText();
         }else{
             return '';
         }
     }
 
-    async clikListarAbonos() {
-        if(await this.botonListarAbonos.isPresent()){
+    async clikListarAbonos(){
+        if (await this.botonListarAbonos.isPresent()){
             await this.botonListarAbonos.click();
         }
     }
@@ -89,5 +89,4 @@ export class PrestamoPage {
     async contarAbonos(){
         return this.listaAbonos.count();
     }
-
 }

@@ -15,6 +15,4 @@ export class AppComponent {
     { url: '/personas', nombre: 'Personas' },
     { url: '/prestamos', nombre: 'Prestamos' }
   ];
-
-  
 }

@@ -3,25 +3,25 @@ import { TestBed } from '@angular/core/testing';
 import { environment } from 'src/environments/environment';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpService } from 'src/app/core/services/http.service';
-import { HomeService } from './home.service';
+import { TrmService } from './trm.service';
 const apiEndpointTrm = `${environment.endpoint}/trm`;
 
-describe('HomeService', () => {
+describe('TrmService', () => {
   let httpMock: HttpTestingController;
-  let service: HomeService;
+  let service: TrmService;
 
   beforeEach(() => {
     const injector = TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [HomeService, HttpService]
+      providers: [TrmService, HttpService]
     });
     httpMock = injector.inject(HttpTestingController);
-    service = TestBed.inject(HomeService);
+    service = TestBed.inject(TrmService);
   });
 
   it('should be created', () => {
-    const homeService: HomeService = TestBed.inject(HomeService);
-    expect(homeService).toBeTruthy();
+    const trmService: TrmService = TestBed.inject(TrmService);
+    expect(trmService).toBeTruthy();
   });
 
   it('deberia listar el trm', () => {
@@ -33,5 +33,4 @@ describe('HomeService', () => {
     expect(req.request.method).toBe('GET');
     req.flush(dummyTrm);
   });
-
 });

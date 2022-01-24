@@ -18,7 +18,7 @@ describe('ListarPrestamoComponent', () => {
   let personaService: PersonaService;
   const listaPrestamos: Prestamo[] = [new Prestamo(1, '2022-01-26', 3000000, 1, false), new Prestamo(1, '2022-01-26', 4000000, 2, false)];
   const listaPersonas: Persona[] = [new Persona(1, 123456, 'Persona 1'), new Persona(2, 654321, 'persona 2')];
-  
+
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ListarPrestamoComponent],

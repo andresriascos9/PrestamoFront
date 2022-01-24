@@ -23,7 +23,7 @@ describe('workspace-project Persona', () => {
         persona.clickBotonCrearPersonas();
         persona.ingresarId(IDENTIFICACION_PERSONA);
         persona.ingresarDescripcion(NOMBRE_PERSONA);
-        persona.clikGuardar()
+        persona.clikGuardar();
 
         // Adicionamos las validaciones despues de la creación
         expect(persona.obtenervalorInputNombrePersona()).toBe('');

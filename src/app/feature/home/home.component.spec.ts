@@ -12,7 +12,7 @@ describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
   let homeService: HomeService;
-  const trm = 4000.95; 
+  const trm = 4000.95;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({

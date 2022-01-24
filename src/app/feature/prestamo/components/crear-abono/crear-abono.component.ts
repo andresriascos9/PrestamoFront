@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Prestamo } from '@prestamo/shared/model/prestamo';
-import { AbonoService } from '@abono/shared/service/abono.service';
+import {AbonoService } from '@prestamo/shared/service/abono.service';
 import Swal from 'sweetalert2';
 
 const LONGITUD_MINIMA_PERMITIDA_INT = 999;
@@ -47,13 +47,13 @@ export class CrearAbonoComponent implements OnInit {
       return;
     }
     this.abonoServie.guardar(this.editForm.value).subscribe(
-      data => {if(data){
+      data => {if (data){
         this.success();
         this.editForm.reset();
         this.isLoading = false;
         this.modal.close(true);
       }},
-      error => {this.error(error.error.mensaje)
+      error => {this.error(error.error.mensaje);
                 this.isLoading = false;
       }
     );

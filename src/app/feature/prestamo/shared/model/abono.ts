@@ -10,5 +10,4 @@ export class Abono {
         this.valorAbono = valorAbono;
         this.prestamo = prestamo;
     }
-
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PersonaService } from '@persona/shared/service/persona.service';
+import { PersonaService } from '@shared/Persona/service/persona.service';
 import { PrestamoService } from '../../shared/service/prestamo.service';
-import { Persona } from '@persona/shared/model/persona';
+import { Persona } from '@shared/Persona/model/persona';
 import { Observable } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
@@ -50,25 +50,18 @@ export class CrearPrestamoComponent implements OnInit {
   }
 
   agregar(){
-    /*this.personaServicio.guardar(this.personaForm.value).subscribe(data => {
-      if (data) {
-        this.success();
-      }
-    });*/
-
     this.prestamoServicio.guardar(this.prestamoForm.value).subscribe(
-      data => {if(data){
+      data => {if (data){
         this.success();
         this.prestamoForm.reset();
       }},
       error => this.error(error.error.mensaje)
     );
-    
   }
 
-  get form() {  
-    return this.prestamoForm.controls;  
-  } 
+  get form() {
+    return this.prestamoForm.controls;
+  }
 
   success(){
     let enPantalla = false;

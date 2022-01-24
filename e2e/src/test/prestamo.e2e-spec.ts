@@ -27,7 +27,6 @@ describe('workspace-project Prestamo', () => {
 
         // Adicionamos las validaciones despues de la creación
         expect(prestamo.obtenervalorInputValorPrestamo()).toBe('');
-        //expect(prestamo.obtenervalorInputPersonaPrestamo()).toBeTruthy();
     });
 
     it('Deberia listar prestamos', () => {
@@ -48,7 +47,7 @@ describe('workspace-project Prestamo', () => {
         prestamo.ingresarValorAbono(VALOR_ABONO);
         prestamo.clikGuardarAbono();
         expect(prestamo.obtenervalorInputValorAbono()).toBe('');
-    })
+    });
 
     it('Deberia listar abonos', () => {
         page.navigateTo();

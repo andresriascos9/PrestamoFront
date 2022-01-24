@@ -63,9 +63,16 @@ pipeline {
       }
     }
 
+    //stage('Test end-to-end') {
+    //  steps{
+    //    echo "------------>Testing Protractor<------------"
+    //    sh 'npm run e2e --'
+    //  }
+    //}
+
     stage('Static Code Analysis') {
 			steps{
-        echo '------------>Análisis de código estático<------------'
+                echo '------------>Análisis de código estático<------------'
 				sonarqubeMasQualityGatesP(sonarKey:'co.com.ceiba.adn:prestamo.front-andres.riascos',
 				sonarName:'CeibaADN-Prestamo-Front-andres.riascos',
 				sonarPathProperties:'./sonar-project.properties')

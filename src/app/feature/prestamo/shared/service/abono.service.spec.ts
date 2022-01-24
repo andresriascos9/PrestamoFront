@@ -65,5 +65,4 @@ describe('AbonoService', () => {
     req.event(new HttpResponse<boolean>({body: true}));
   });
 
-  
 });

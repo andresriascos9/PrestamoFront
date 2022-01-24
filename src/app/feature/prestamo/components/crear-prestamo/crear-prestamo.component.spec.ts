@@ -60,6 +60,6 @@ describe('CrearPrestamoComponent', () => {
     component.prestamoForm.controls.valorPrestamo.setValue('2000000');
     component.prestamoForm.controls.persona.setValue(1);
     expect(component.prestamoForm.valid).toBeTruthy();
-    expect(component.agregar()).toBeTruthy;
+    expect(component.agregar()).toBeTruthy();
   });
 });

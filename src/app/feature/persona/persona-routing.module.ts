@@ -12,7 +12,8 @@ const routes: Routes = [
       {
         path: 'crear',
         component: CrearPersonaComponent
-      },{
+      },
+      {
         path: 'listar',
         component: ListarPersonaComponent
       },
