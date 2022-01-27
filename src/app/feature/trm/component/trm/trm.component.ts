@@ -28,7 +28,8 @@ export class TrmComponent implements OnInit {
   }
 
   obtenerTrmActualColombia() {
-    const fecha = new Date(new Date().setDate(new Date().getDate() - 4));
+    const DIAS_MAXIMOS_VIGENCIA_TRM = 4;
+    const fecha = new Date(new Date().setDate(new Date().getDate() - DIAS_MAXIMOS_VIGENCIA_TRM));
     const fechaTransformada = this.datePipe.transform(fecha, 'yyyy-MM-dd');
     this.trmActual = this.trmService.consultarPorFuera(fechaTransformada);
   }

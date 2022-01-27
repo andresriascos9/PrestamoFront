@@ -49,11 +49,12 @@ export class ListarPrestamoComponent implements OnInit {
   }
 
   obtenerPersona(id){
+    const PERSONA_NO_ENCONTRADA = 'No se pudo obtener el nombre de la persona';
     const persona = this.listaPersonas.find(element => element.id === id);
     if (persona){
       return persona.nombre;
     }
-      return "No se pudo obtener el nombre de la persona";
+      return PERSONA_NO_ENCONTRADA;
   }
 
   obtenerAbonos(id){
