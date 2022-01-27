@@ -4,7 +4,8 @@ import { environment } from 'src/environments/environment';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpService } from 'src/app/core/services/http.service';
 import { TrmService } from './trm.service';
-const apiEndpointTrm = `${environment.endpoint}/trm`;
+const apiEndpointTrm = `${environment.urlTrm}`;
+import { Trm } from '../model/trm';
 
 describe('TrmService', () => {
   let httpMock: HttpTestingController;
@@ -25,11 +26,14 @@ describe('TrmService', () => {
   });
 
   it('deberia listar el trm', () => {
-    const dummyTrm = 4000.96;
-    service.consultar().subscribe(personas => {
+    const dummyTrm = [
+      new Trm('$3,956.32', '2022-01-26', '2022-01-26'), new Trm('$3,956.32', '2022-01-26', '2022-01-26')
+    ];
+    const fecha = '2022-01-23';
+    service.consultarPorFuera(fecha).subscribe(personas => {
       expect(personas).toEqual(dummyTrm);
     });
-    const req = httpMock.expectOne(apiEndpointTrm);
+    const req = httpMock.expectOne(apiEndpointTrm+"?$query=SELECT%20*%20WHERE%20vigenciadesde%3E='"+fecha+"'%20ORDER%20BY%20vigenciahasta%20DESC");
     expect(req.request.method).toBe('GET');
     req.flush(dummyTrm);
   });

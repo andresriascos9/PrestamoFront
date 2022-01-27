@@ -5,8 +5,7 @@ import { Persona } from '@shared/Persona/model/persona';
 
 @Component({
   selector: 'app-listar-persona',
-  templateUrl: './listar-persona.component.html',
-  styleUrls: ['./listar-persona.component.css']
+  templateUrl: './listar-persona.component.html'
 })
 export class ListarPersonaComponent implements OnInit {
   public listaPersonas: Observable<Persona[]>;

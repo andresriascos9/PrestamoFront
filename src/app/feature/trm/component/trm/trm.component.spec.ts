@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpService } from 'src/app/core/services/http.service';
 import { TrmService } from '../../service/trm.service';
+import { DatePipe } from '@angular/common';
 
 describe('TrmComponent', () => {
   let component: TrmComponent;
@@ -19,7 +20,7 @@ describe('TrmComponent', () => {
         HttpClientModule,
         RouterTestingModule
       ],
-      providers: [TrmService, HttpService]
+      providers: [TrmService, HttpService, DatePipe]
     })
     .compileComponents();
   }));
@@ -31,7 +32,6 @@ describe('TrmComponent', () => {
   });
 
   it('should create', () => {
-    
     expect(component).toBeTruthy();
   });
 });

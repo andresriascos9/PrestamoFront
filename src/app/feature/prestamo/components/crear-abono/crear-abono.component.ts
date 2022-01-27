@@ -10,8 +10,7 @@ const LONGITUD_MAXIMA_PERMITIDA_INT = 9999999999;
 
 @Component({
   selector: 'app-crear-abono',
-  templateUrl: './crear-abono.component.html',
-  styleUrls: ['./crear-abono.component.css']
+  templateUrl: './crear-abono.component.html'
 })
 export class CrearAbonoComponent implements OnInit {
 
@@ -61,29 +60,19 @@ export class CrearAbonoComponent implements OnInit {
   }
 
   success(){
-    let enPantalla = false;
     this.notificacion.fire({
       title: 'Éxito',
       text: 'Se ha creado el abono',
       icon: 'success'
     });
-    if (this.notificacion.isVisible()) {
-      enPantalla = true;
-    }
-    return enPantalla;
   }
 
   error(mensaje){
-    let enPantalla = false;
     this.notificacion.fire({
       title: 'Error',
       text: mensaje,
       icon: 'error'
     });
-    if (this.notificacion.isVisible()) {
-      enPantalla = true;
-    }
-    return enPantalla;
   }
 
 }

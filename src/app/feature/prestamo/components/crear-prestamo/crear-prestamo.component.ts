@@ -11,8 +11,7 @@ const LONGITUD_MAXIMA_PERMITIDA_INT = 9999999999;
 
 @Component({
   selector: 'app-crear-prestamo',
-  templateUrl: './crear-prestamo.component.html',
-  styleUrls: ['./crear-prestamo.component.css']
+  templateUrl: './crear-prestamo.component.html'
 })
 export class CrearPrestamoComponent implements OnInit {
 
@@ -64,29 +63,19 @@ export class CrearPrestamoComponent implements OnInit {
   }
 
   success(){
-    let enPantalla = false;
     this.notificacion.fire({
       title: 'Éxito',
       text: 'Se ha creado el prestamo',
       icon: 'success'
     });
-    if (this.notificacion.isVisible()) {
-      enPantalla = true;
-    }
-    return enPantalla;
   }
 
   error(mensaje){
-    let enPantalla = false;
     this.notificacion.fire({
       title: 'Error',
       text: mensaje,
       icon: 'error'
     });
-    if (this.notificacion.isVisible()) {
-      enPantalla = true;
-    }
-    return enPantalla;
   }
 
 }

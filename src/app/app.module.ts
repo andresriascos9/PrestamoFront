@@ -12,6 +12,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TrmComponent } from './feature/trm/component/trm/trm.component';
 import { TrmService } from './feature/trm/service/trm.service';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { TrmService } from './feature/trm/service/trm.service';
     CoreModule,
     NgbModule
   ],
-  providers: [TrmService, CookieService],
+  providers: [TrmService, CookieService, DatePipe],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

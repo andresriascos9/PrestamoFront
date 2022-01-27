@@ -8,14 +8,18 @@ import { CrearAbonoComponent } from '../crear-abono/crear-abono.component';
 import { ListarAbonosComponent } from '../listar-abonos/listar-abonos.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { AbonoService } from '@prestamo/shared/service/abono.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-listar-prestamo',
-  templateUrl: './listar-prestamo.component.html',
-  styleUrls: ['./listar-prestamo.component.css']
+  templateUrl: './listar-prestamo.component.html'
 })
 export class ListarPrestamoComponent implements OnInit {
 
+  notificacion = Swal.mixin({
+    toast: true,
+    position: 'center'
+  });
   listaAbonos: Abono[] = [];
   listaPrestamos: Prestamo[] = [];
   listaPersonas: Persona[] = [];
@@ -33,21 +37,15 @@ export class ListarPrestamoComponent implements OnInit {
   private iniciarValores(){
     this.prestamoService.consultar().subscribe(data => {
       this.listaPrestamos = data;
-    }, error => {
-      console.log(error);
-    });
+    }, error => this.error(error.error.mensaje));
 
     this.personasService.consultar().subscribe(info => {
       this.listaPersonas = info;
-    }, error => {
-      console.log(error);
-    });
+    }, error => this.error(error.error.mensaje));
 
     this.abonoService.consultar().subscribe(info => {
       this.listaAbonos = info;
-    }, error => {
-      console.log(error);
-    });
+    }, error => this.error(error.error.mensaje));
   }
 
   obtenerPersona(id){
@@ -55,11 +53,11 @@ export class ListarPrestamoComponent implements OnInit {
     if (persona){
       return persona.nombre;
     }
+      return "No se pudo obtener el nombre de la persona";
   }
 
   obtenerAbonos(id){
-    const abonos = this.listaAbonos.filter(element => element.prestamo === id);
-    return abonos;
+    return this.listaAbonos.filter(element => element.prestamo === id);
   }
 
   obtenerSuma(abonos){
@@ -84,5 +82,18 @@ export class ListarPrestamoComponent implements OnInit {
     const modalRef = this.modalService.open(ListarAbonosComponent, { centered: true });
     modalRef.componentInstance.idPrestamo = prestamo;
     modalRef.componentInstance.totalAbonos = sumaAbonos;
+  }
+
+  error(mensaje){
+    let enPantalla = false;
+    this.notificacion.fire({
+      title: 'Error',
+      text: mensaje,
+      icon: 'error'
+    });
+    if (this.notificacion.isVisible()) {
+      enPantalla = true;
+    }
+    return enPantalla;
   }
 }

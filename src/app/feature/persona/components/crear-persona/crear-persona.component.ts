@@ -8,8 +8,7 @@ const LONGITUD_MAXIMA_PERMITIDA_TEXTO = 100;
 
 @Component({
   selector: 'app-crear-persona',
-  templateUrl: './crear-persona.component.html',
-  styleUrls: ['./crear-persona.component.css']
+  templateUrl: './crear-persona.component.html'
 })
 export class CrearPersonaComponent implements OnInit {
 
@@ -47,29 +46,20 @@ export class CrearPersonaComponent implements OnInit {
   }
 
   success(){
-    let enPantalla = false;
     this.notificacion.fire({
       title: 'Éxito',
       text: 'Se ha creado la persona',
       icon: 'success'
     });
-    if (this.notificacion.isVisible()) {
-      enPantalla = true;
-    }
-    return enPantalla;
   }
 
   error(mensaje){
-    let enPantalla = false;
     this.notificacion.fire({
       title: 'Error',
       text: mensaje,
       icon: 'error'
     });
-    if (this.notificacion.isVisible()) {
-      enPantalla = true;
-    }
-    return enPantalla;
   }
+
 
 }
