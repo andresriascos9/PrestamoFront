@@ -54,7 +54,7 @@ export class ListarPrestamoComponent implements OnInit {
     if (persona){
       return persona.nombre;
     }
-      return PERSONA_NO_ENCONTRADA;
+    return PERSONA_NO_ENCONTRADA;
   }
 
   obtenerAbonos(id){
@@ -86,15 +86,10 @@ export class ListarPrestamoComponent implements OnInit {
   }
 
   error(mensaje){
-    let enPantalla = false;
     this.notificacion.fire({
       title: 'Error',
       text: mensaje,
       icon: 'error'
     });
-    if (this.notificacion.isVisible()) {
-      enPantalla = true;
-    }
-    return enPantalla;
   }
 }

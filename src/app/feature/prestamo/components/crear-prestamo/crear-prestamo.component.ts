@@ -58,10 +58,6 @@ export class CrearPrestamoComponent implements OnInit {
     );
   }
 
-  get form() {
-    return this.prestamoForm.controls;
-  }
-
   success(){
     this.notificacion.fire({
       title: 'Éxito',

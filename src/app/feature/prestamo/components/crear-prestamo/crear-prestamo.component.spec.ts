@@ -16,6 +16,7 @@ describe('CrearPrestamoComponent', () => {
   let fixture: ComponentFixture<CrearPrestamoComponent>;
   let prestamoService: PrestamoService;
   let personasService: PersonaService;
+  let getUpdateSpy;
   const listaPersonas: Persona[] = [new Persona(1, 123456, 'Persona 1'), new Persona(2, 654321, 'persona 2')];
 
   beforeEach(waitForAsync(() => {
@@ -41,7 +42,7 @@ describe('CrearPrestamoComponent', () => {
       of(listaPersonas)
     );
     prestamoService = TestBed.inject(PrestamoService);
-    spyOn(prestamoService, 'guardar').and.returnValue(
+    getUpdateSpy = spyOn(prestamoService, 'guardar').and.returnValue(
       of(true)
     );
     fixture.detectChanges();
@@ -61,5 +62,22 @@ describe('CrearPrestamoComponent', () => {
     component.prestamoForm.controls.persona.setValue(1);
     expect(component.prestamoForm.valid).toBeTruthy();
     expect(component.agregar()).toBe();
+    fixture.detectChanges();
+    expect(component.notificacion.isVisible()).toBeTruthy();
+    expect(component.notificacion.getTitle().textContent).toEqual('Éxito');
+    component.notificacion.clickConfirm();
+  });
+
+  it('Registrando prestamos con error en subject', () => {
+    expect(component.prestamoForm.valid).toBeFalsy();
+    component.prestamoForm.controls.valorPrestamo.setValue('2000000');
+    component.prestamoForm.controls.persona.setValue(1);
+    expect(component.prestamoForm.valid).toBeTruthy();
+    prestamoService = TestBed.inject(PrestamoService);
+    getUpdateSpy.and.returnValue(of(component.error('Error')));
+    fixture.detectChanges();
+    expect(component.agregar()).toBe();
+    expect(component.notificacion.isVisible()).toBeTruthy();
+    expect(component.notificacion.getTitle().textContent).toEqual('Error');
   });
 });

@@ -1,4 +1,4 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { fakeAsync, waitForAsync, ComponentFixture, TestBed, tick } from '@angular/core/testing';
 
 import { TrmComponent } from './trm.component';
 import { CommonModule } from '@angular/common';
@@ -33,5 +33,16 @@ describe('TrmComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+    expect(component.spinner).toBeTrue();
   });
+
+  it('spinner debería desaparecer despues de 500ms', fakeAsync(() => {
+    expect(component.spinner).toBeTrue();
+    tick(500);
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      expect(component.spinner).toBeFalse();
+    });
+   }));
+
 });

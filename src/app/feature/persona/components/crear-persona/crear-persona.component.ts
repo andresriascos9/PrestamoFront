@@ -61,5 +61,4 @@ export class CrearPersonaComponent implements OnInit {
     });
   }
 
-
 }
