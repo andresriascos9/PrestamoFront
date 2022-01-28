@@ -42,9 +42,6 @@ export class CrearAbonoComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.editForm.invalid || this.isLoading) {
-      return;
-    }
     this.abonoServie.guardar(this.editForm.value).subscribe(
       data => {if (data){
         this.success();
@@ -52,8 +49,8 @@ export class CrearAbonoComponent implements OnInit {
         this.isLoading = false;
         this.modal.close(true);
       }},
-      error => {this.error(error.error.mensaje);
-                this.isLoading = false;
+      error => {this.mostrarError(error.error.mensaje);
+        this.isLoading = false;
       }
     );
     this.isLoading = true;
@@ -67,7 +64,7 @@ export class CrearAbonoComponent implements OnInit {
     });
   }
 
-  error(mensaje){
+  mostrarError(mensaje){
     this.notificacion.fire({
       title: 'Error',
       text: mensaje,

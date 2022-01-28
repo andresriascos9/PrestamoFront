@@ -34,7 +34,7 @@ export class ListarPrestamoComponent implements OnInit {
      this.iniciarValores();
   }
 
-  private iniciarValores(){
+  iniciarValores(){
     this.prestamoService.consultar().subscribe(data => {
       this.listaPrestamos = data;
     }, error => this.error(error.error.mensaje));

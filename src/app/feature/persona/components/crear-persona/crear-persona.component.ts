@@ -29,7 +29,7 @@ export class CrearPersonaComponent implements OnInit {
         this.success();
         this.personaForm.reset();
       }},
-      error => this.error(error.error.mensaje)
+      error => this.mostrarError(error.error.mensaje)
     );
   }
 
@@ -37,12 +37,8 @@ export class CrearPersonaComponent implements OnInit {
     this.personaForm = this.fb.group({
       identificacion: ['', [Validators.required]],
       nombre: ['', [Validators.required, Validators.minLength(LONGITUD_MINIMA_PERMITIDA_TEXTO),
-                                                             Validators.maxLength(LONGITUD_MAXIMA_PERMITIDA_TEXTO)]]
+                    Validators.maxLength(LONGITUD_MAXIMA_PERMITIDA_TEXTO)]]
     });
-  }
-
-  get form() {
-    return this.personaForm.controls;
   }
 
   success(){
@@ -53,7 +49,7 @@ export class CrearPersonaComponent implements OnInit {
     });
   }
 
-  error(mensaje){
+  mostrarError(mensaje){
     this.notificacion.fire({
       title: 'Error',
       text: mensaje,

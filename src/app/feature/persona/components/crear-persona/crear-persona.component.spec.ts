@@ -8,11 +8,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpService } from 'src/app/core/services/http.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { throwError } from 'rxjs';
 
 describe('CrearPersonaComponent', () => {
   let component: CrearPersonaComponent;
   let fixture: ComponentFixture<CrearPersonaComponent>;
   let personaService: PersonaService;
+  let spyAgregar;
+  const testError = {
+    status: 404,
+    error: {
+        mensaje: 'Test 404 error'
+    }
+  };
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -33,7 +41,7 @@ describe('CrearPersonaComponent', () => {
     fixture = TestBed.createComponent(CrearPersonaComponent);
     component = fixture.componentInstance;
     personaService = TestBed.inject(PersonaService);
-    spyOn(personaService, 'guardar').and.returnValue(
+    spyAgregar = spyOn(personaService, 'guardar').and.returnValue(
       of(true)
     );
     fixture.detectChanges();
@@ -47,11 +55,28 @@ describe('CrearPersonaComponent', () => {
     expect(component.personaForm.valid).toBeFalsy();
   });
 
+  it('debería capturar el error in this.error', () => {
+    spyAgregar.and.returnValue(throwError(testError));
+    component.agregar();
+    expect(component.notificacion.isVisible()).toBeTruthy();
+    expect(component.notificacion.getTitle().textContent).toEqual('Error');
+  });
+
   it('Registrando persona', () => {
     expect(component.personaForm.valid).toBeFalsy();
     component.personaForm.controls.identificacion.setValue('001111');
     component.personaForm.controls.nombre.setValue('Nombre test de test');
     expect(component.personaForm.valid).toBeTruthy();
     expect(component.agregar()).toBe();
+    fixture.detectChanges();
+    expect(component.notificacion.isVisible()).toBeTruthy();
+    expect(component.notificacion.getTitle().textContent).toEqual('Éxito');
+    component.notificacion.clickConfirm();
+  });
+
+  it('Registrando abono con mensaje de error', () => {
+    spyAgregar.and.returnValue(of(component.mostrarError('Error')));
+    expect(component.notificacion.isVisible()).toBeTruthy();
+    expect(component.notificacion.getTitle().textContent).toEqual('Error');
   });
 });

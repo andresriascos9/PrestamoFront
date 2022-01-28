@@ -54,7 +54,7 @@ export class CrearPrestamoComponent implements OnInit {
         this.success();
         this.prestamoForm.reset();
       }},
-      error => this.error(error.error.mensaje)
+      error => this.mostrarError(error.error.mensaje)
     );
   }
 
@@ -66,7 +66,7 @@ export class CrearPrestamoComponent implements OnInit {
     });
   }
 
-  error(mensaje){
+  mostrarError(mensaje){
     this.notificacion.fire({
       title: 'Error',
       text: mensaje,
